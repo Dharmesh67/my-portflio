@@ -21,11 +21,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from '@studio-freight/lenis';
 import Background3D from "./components/Background3D";
 import SplitType from "split-type";
+import Calculator from "./components/Calculator";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState<string | null>(null);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
   const mainRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
@@ -316,7 +318,7 @@ export default function App() {
                 </h2>
                 <div className="space-y-6 text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl font-light">
                   <p>
-                    I'm Dharmesh, a 12th-standard student at <span className="text-white font-medium drop-shadow-md">Annamalam School, Tamil Nadu</span>. 
+                    I'm Dharmesh, a 12th-standard student at <span className="text-white font-medium drop-shadow-md">Annamangalam School, Tamil Nadu</span>. 
                     My journey into tech started with a simple curiosity about how things work behind the screen.
                   </p>
                   <p>
@@ -439,7 +441,13 @@ export default function App() {
                       </p>
                     </div>
                     <a 
-                      href="#" 
+                      href={project.id === 'project-calc' ? "#" : undefined} 
+                      onClick={(e) => {
+                        if (project.id === 'project-calc') {
+                          e.preventDefault();
+                          setActiveProject(project.id);
+                        }
+                      }}
                       id={project.id}
                       className="shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full glass-panel border border-white/20 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-black transition-all duration-500 hover:scale-110 shadow-[0_0_20px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_30px_rgba(234,88,12,0.4)]"
                     >
@@ -467,7 +475,7 @@ export default function App() {
                 <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center">
                   <Terminal size={24} />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">Annamalam School</h3>
+                <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">Annamangalam School</h3>
               </div>
               <div className="pl-16 space-y-2">
                 <p className="text-xl font-medium text-white/80">12th Standard Student</p>
@@ -525,27 +533,40 @@ export default function App() {
                 <form className="relative z-10 flex flex-col gap-5" onSubmit={(e) => { 
                   e.preventDefault(); 
                   setFormStatus("submitting");
+                  
+                  const formData = new FormData(e.currentTarget);
+                  const name = formData.get('name');
+                  const email = formData.get('email');
+                  const message = formData.get('message');
+                  
+                  const whatsappText = `Hello Dharmesh,\n\nI am ${name} (${email}).\n\nMessage:\n${message}`;
+                  const encodedText = encodeURIComponent(whatsappText);
+                  const whatsappUrl = `https://wa.me/919976129079?text=${encodedText}`;
+                  
+                  window.open(whatsappUrl, '_blank');
+                  
                   setTimeout(() => {
                     setFormStatus("success");
                     setTimeout(() => setFormStatus("idle"), 3000);
-                  }, 1000);
+                    e.currentTarget.reset();
+                  }, 500);
                 }}>
                   <div className="flex flex-col gap-2">
                     <label className="text-xs uppercase tracking-widest text-white/50 font-bold ml-2">Name</label>
-                    <input type="text" placeholder="John Doe" required className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors" disabled={formStatus !== "idle"} />
+                    <input type="text" name="name" placeholder="John Doe" required className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors" disabled={formStatus !== "idle"} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-xs uppercase tracking-widest text-white/50 font-bold ml-2">Email</label>
-                    <input type="email" placeholder="john@example.com" required className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors" disabled={formStatus !== "idle"} />
+                    <input type="email" name="email" placeholder="john@example.com" required className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors" disabled={formStatus !== "idle"} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-xs uppercase tracking-widest text-white/50 font-bold ml-2">Message</label>
-                    <textarea placeholder="Hi Dharmesh, I'd like to collaborate..." required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors resize-none" disabled={formStatus !== "idle"} />
+                    <textarea name="message" placeholder="Hi Dharmesh, I'd like to collaborate..." required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/20 focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-colors resize-none" disabled={formStatus !== "idle"} />
                   </div>
                   <button type="submit" disabled={formStatus !== "idle"} className="mt-2 w-full py-4 bg-white hover:bg-orange-500 hover:text-black text-black font-bold uppercase tracking-widest text-sm rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group/btn disabled:opacity-70 disabled:cursor-not-allowed">
-                    {formStatus === "idle" && <><span className="relative top-[1px]">Send Message</span> <Send size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" /></>}
-                    {formStatus === "submitting" && <span className="animate-pulse">Sending...</span>}
-                    {formStatus === "success" && <span className="text-green-600">Message Sent!</span>}
+                    {formStatus === "idle" && <><span className="relative top-[1px]">Send via WhatsApp</span> <Send size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" /></>}
+                    {formStatus === "submitting" && <span className="animate-pulse">Redirecting...</span>}
+                    {formStatus === "success" && <span className="text-green-600">Opened WhatsApp!</span>}
                   </button>
                 </form>
               </div>
@@ -568,6 +589,10 @@ export default function App() {
           </div>
         </footer>
       </main>
+
+      {activeProject === 'project-calc' && (
+        <Calculator onClose={() => setActiveProject(null)} />
+      )}
     </div>
   );
 }

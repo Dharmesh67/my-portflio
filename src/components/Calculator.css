@@ -1,0 +1,130 @@
+.calculator-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.casio-calculator {
+    width:340px;
+    background:#f4d0d0;
+    padding:20px;
+    border-radius:25px;
+    box-shadow:
+        inset 0 0 10px rgba(255,255,255,0.5),
+        0 10px 25px rgba(0,0,0,0.5);
+    font-family: Arial, sans-serif;
+    position: relative;
+    max-width: 95vw;
+}
+
+.casio-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,165,0,0.8);
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    z-index: 1010;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.casio-close-btn:hover {
+    background: white;
+    color: black;
+}
+
+.casio-brand{
+    font-size:32px;
+    font-weight:bold;
+    color:#111;
+    margin-bottom:15px;
+}
+
+.casio-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.casio-solar{
+    width:120px;
+    height:40px;
+    background:#111;
+    border-radius:8px;
+}
+
+.casio-display{
+    width:100%;
+    height:90px;
+    margin:20px 0;
+    border:none;
+    outline:none;
+    background:white;
+    border-radius:10px;
+    text-align:right;
+    padding:15px;
+    font-size:42px;
+    color:black;
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.casio-buttons{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+}
+
+.casio-btn{
+    height:60px;
+    border:none;
+    border-radius:15px;
+    font-size:24px;
+    cursor:pointer;
+    background:#2f3550;
+    color:white;
+    box-shadow:0 5px 8px rgba(0,0,0,0.3);
+    transition:0.2s;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.casio-btn:hover{
+    transform:scale(1.05);
+}
+
+.casio-btn:active{
+    transform:scale(0.95);
+}
+
+.casio-operator{
+    background:#5662a5;
+}
+
+.casio-equal{
+    background:#4b5cff;
+}
+
+.casio-plus{
+    grid-row:span 2;
+    height:132px;
+}
+
+.casio-zero{
+    grid-column: span 1;
+}
