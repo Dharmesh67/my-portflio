@@ -1,0 +1,121 @@
+.qr-scanner-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.qr-scanner-container {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    padding: 25px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+}
+
+.qr-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,165,0,0.8);
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    z-index: 1010;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.qr-close-btn:hover {
+    background: white;
+    color: black;
+}
+
+.qr-scanner-container h1 {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+#reader {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: white; /* html5-qrcode creates some internal elements that might need a white bg */
+}
+
+/* Ensure the inner video fits and border radius is respected */
+#reader video {
+    border-radius: 20px;
+}
+
+.qr-result-box {
+    background: #111827;
+    padding: 15px;
+    border-radius: 15px;
+    word-break: break-word;
+    margin-top: 15px;
+    font-size: 18px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.qr-result-box a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.qr-action-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: #22c55e;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.qr-action-btn:hover {
+    transform: scale(1.05);
+}
+
+.qr-status {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #cbd5e1;
+}
+
+/* Cleanup for html5-qrcode default styles */
+#reader__dashboard_section_csr span {
+    color: black;
+}
+#reader__dashboard_section_csr button {
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: white;
+    color: black;
+    cursor: pointer;
+}

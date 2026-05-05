@@ -22,6 +22,7 @@ import Lenis from '@studio-freight/lenis';
 import Background3D from "./components/Background3D";
 import SplitType from "split-type";
 import Calculator from "./components/Calculator";
+import QRCodeScanner from "./components/QRCodeScanner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -441,9 +442,9 @@ export default function App() {
                       </p>
                     </div>
                     <a 
-                      href={project.id === 'project-calc' ? "#" : undefined} 
+                      href={(project.id === 'project-calc' || project.id === 'project-qr') ? "#" : undefined} 
                       onClick={(e) => {
-                        if (project.id === 'project-calc') {
+                        if (project.id === 'project-calc' || project.id === 'project-qr') {
                           e.preventDefault();
                           setActiveProject(project.id);
                         }
@@ -592,6 +593,9 @@ export default function App() {
 
       {activeProject === 'project-calc' && (
         <Calculator onClose={() => setActiveProject(null)} />
+      )}
+      {activeProject === 'project-qr' && (
+        <QRCodeScanner onClose={() => setActiveProject(null)} />
       )}
     </div>
   );
