@@ -10,16 +10,18 @@
 }
 
 .casio-calculator {
-    width:340px;
-    background:#f4d0d0;
-    padding:20px;
-    border-radius:25px;
+    width: 390px;
+    background: #f4d0d0;
+    padding: 20px;
+    border-radius: 25px;
     box-shadow:
-        inset 0 0 10px rgba(255,255,255,0.5),
-        0 10px 25px rgba(0,0,0,0.5);
+        inset 0 0 10px rgba(255,255,255,0.6),
+        0 10px 25px rgba(0,0,0,0.3);
     font-family: Arial, sans-serif;
     position: relative;
     max-width: 95vw;
+    max-height: 95vh;
+    overflow-y: auto;
 }
 
 .casio-close-btn {
@@ -47,84 +49,94 @@
     color: black;
 }
 
-.casio-brand{
-    font-size:32px;
-    font-weight:bold;
-    color:#111;
-    margin-bottom:15px;
+.casio-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.casio-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.casio-brand {
+    font-size: 42px;
+    font-weight: bold;
+    color: #111;
 }
 
-.casio-solar{
-    width:120px;
-    height:40px;
-    background:#111;
-    border-radius:8px;
+.casio-model {
+    font-size: 14px;
+    color: #333;
 }
 
-.casio-display{
-    width:100%;
-    height:90px;
-    margin:20px 0;
-    border:none;
-    outline:none;
-    background:white;
-    border-radius:10px;
-    text-align:right;
-    padding:15px;
-    font-size:42px;
-    color:black;
-    box-shadow:inset 0 0 10px rgba(0,0,0,0.3);
+.casio-solar {
+    width: 120px;
+    height: 40px;
+    background: #111;
+    border-radius: 8px;
 }
 
-.casio-buttons{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:12px;
+.casio-display {
+    width: 100%;
+    height: 90px;
+    margin: 20px 0;
+    border: none;
+    outline: none;
+    background: white;
+    border-radius: 12px;
+    text-align: right;
+    padding: 15px;
+    font-size: 38px;
+    color: black;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
 }
 
-.casio-btn{
-    height:60px;
-    border:none;
-    border-radius:15px;
-    font-size:24px;
-    cursor:pointer;
-    background:#2f3550;
-    color:white;
-    box-shadow:0 5px 8px rgba(0,0,0,0.3);
-    transition:0.2s;
+.casio-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.casio-btn {
+    height: 50px;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    cursor: pointer;
+    background: #2f3550;
+    color: white;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.3);
+    transition: 0.2s;
     font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.casio-btn:hover{
-    transform:scale(1.05);
+@media (min-height: 800px) {
+    .casio-btn {
+        height: 60px;
+        font-size: 20px;
+    }
 }
 
-.casio-btn:active{
-    transform:scale(0.95);
+.casio-btn:hover {
+    transform: scale(1.05);
 }
 
-.casio-operator{
-    background:#5662a5;
+.casio-btn:active {
+    transform: scale(0.95);
 }
 
-.casio-equal{
-    background:#4b5cff;
+.casio-operator {
+    background: #5864b0;
 }
 
-.casio-plus{
-    grid-row:span 2;
-    height:132px;
+.casio-equal {
+    background: #4057ff;
 }
 
-.casio-zero{
-    grid-column: span 1;
+.casio-special {
+    background: #d86a92;
+}
+
+.casio-memory {
+    background: #0f8b8d;
 }
